@@ -1,0 +1,36 @@
+brooklyn.catalog:
+  id: ArtifactoryServer
+  version: 1.0
+  description: Artifactory Server
+
+services:
+- type: brooklyn.entity.basic.VanillaSoftwareProcess
+  name: Artifactory Server
+  launch.command: |
+    
+    # Install prerequisite tools
+    sudo apt-get update
+    sudo apt-get -y install unzip openjdk-7-jre
+    
+    # Download and unzip Artifactory package
+    wget -O artifactory.zip http://bit.ly/Hqv9aj
+    unzip artifactory.zip
+    
+    cd artifactory*/
+    
+    # Set specified Artifactory HTTP port in tomcat configuration file
+    sudo sed -i -e '/Connector port=/ s/=\".*\"/=\"'"$ARTIFACTORY_HTTP_PORT"'\"/' tomcat/conf/server.xml
+    
+    # Start Artifactory service
+    chmod +x bin/installService.sh
+    sudo bin/installService.sh
+    sudo service artifactory start
+    
+  checkRunning.command: sudo service artifactory status
+  stop.command:  sudo service artifactory stop
+  
+  brooklyn.config:
+    artifactory.http.port: 8082
+    
+    shell.env: 
+      ARTIFACTORY_HTTP_PORT: $brooklyn:config("artifactory.http.port")
