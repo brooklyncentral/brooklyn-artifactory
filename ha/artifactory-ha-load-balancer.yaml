@@ -1,0 +1,45 @@
+brooklyn.catalog:
+  id: ArtifactoryLoadBalancer
+  version: 1.0
+  description: Artifactory HA nginx Load Balancer
+
+services:
+- type: brooklyn.entity.basic.VanillaSoftwareProcess
+  name: Artifactory HA nginx Load Balancer
+  launch.command: |
+    
+    # Install nginx
+    sudo apt-get -y install nginx
+    
+    # Download nginx config file template
+    sudo wget --output-document=artifactory-nginx.conf $ARTIFACTORY_NGINX_CONFIG_TEMPLATE_DOWNLOAD_URL
+    sudo mv artifactory-nginx.conf ~/artifactory-nginx.conf
+    
+    # Replace server name in template
+    sudo sed -i "s/SERVER_NAME_HERE/${ARTIFACTORY_SERVER_NAME}/g" ~/artifactory-nginx.conf
+    
+    # Replace node IPs in template
+    server_ip_text=""
+    
+    IFS=';' read -ra IPS <<< "$ARTIFACTORY_NODES_IPS"
+    for i in "${IPS[@]}"; do
+        server_ip_text+="server ${i}:8081;"
+    done
+    
+    sudo sed -i "s/server SERVER_IP_HERE:8081;/${server_ip_text}/g" ~/artifactory-nginx.conf
+    
+    # Start nginx service
+    sudo nginx -c ~/artifactory-nginx.conf
+    
+  checkRunning.command: sudo service nginx status
+  stop.command: sudo service nginx stop
+  
+  brooklyn.config:
+    artifactory.nginx.config.template.download.url: https://raw.githubusercontent.com/cloudsoft/ibm-artifactory-ha/16134741739262b00cfad31b5e95a1a897225c3c/conf/artifactory-nginx-template.conf?token=ALEAW-me0-bJdNX3VIXC_flTpj29nEJYks5VeJ6QwA%3D%3D
+    artifactory.server.name: Test Server
+    artifactory.nodes.ips: "108.168.144.212;108.168.144.221"
+        
+    shell.env: 
+        ARTIFACTORY_NGINX_CONFIG_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.nginx.config.template.download.url")    
+        ARTIFACTORY_SERVER_NAME: $brooklyn:config("artifactory.server.name")
+        ARTIFACTORY_NODES_IPS: $brooklyn:config("artifactory.nodes.ips")

@@ -1,0 +1,59 @@
+brooklyn.catalog:
+  id: ArtifactoryHaDbServer
+  version: 1.0
+  description: Artifactory HA MySQL DB Server
+
+services:
+- type: brooklyn.entity.basic.VanillaSoftwareProcess
+  name: Artifactory HA MySQL DB Server
+  launch.command: |
+      
+    #Install MySQL
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password $ARTIFACTORY_DB_SERVER_PASSWORD’
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $ARTIFACTORY_DB_SERVER_PASSWORD'
+    sudo apt-get -y install mysql-server
+    
+    # Download MySQL create db script template
+    sudo wget --output-document=createdb_mysql.sql $ARTIFACTORY_MYSQL_CREATEDB_SCRIPT_TEMPLATE_DOWNLOAD_URL
+    sudo mv createdb_mysql.sql ~/createdb_mysql.sql
+    
+    # Replace username in template
+    sudo sed -i "s/USER_HERE/${ARTIFACTORY_DB_SERVER_USERNAME}/g" ~/createdb_mysql.sql
+    
+    # Replace password in template
+    sudo sed -i "s/PASSWORD_HERE/${ARTIFACTORY_DB_SERVER_PASSWORD}/g" ~/createdb_mysql.sql
+    
+    # Replace subnet in template
+    sudo sed -i "s/SUBNET_HERE/${ARTIFACTORY_SUBNET}/g" ~/createdb_mysql.sql
+    
+    # Create db
+    sudo mysql --user=root --password=${ARTIFACTORY_DB_SERVER_PASSWORD} < ~/createdb_mysql.sql
+    
+    # Edit my.cnf file to allow remote connections
+    sudo sed -i -e "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/g" /etc/mysql/my.cnf
+    
+    # Edit my.cnf file with necessary additional Artifactory values
+    sudo sed -i -e "s/max_allowed_packet\s*=.*M/max_allowed_packet = 8M/g" /etc/mysql/my.cnf
+    sudo sed -i "/\[mysqld\]/a innodb_log_buffer_size = 4M" /etc/mysql/my.cnf
+    sudo sed -i "/\[mysqld\]/a innodb_log_file_size = 256M" /etc/mysql/my.cnf
+    sudo sed -i "/\[mysqld\]/a max_heap_table_size = 512M" /etc/mysql/my.cnf
+    sudo sed -i "/\[mysqld\]/a tmp_table_size = 512M" /etc/mysql/my.cnf
+    sudo sed -i "/\[mysqld\]/a innodb_file_per_table" /etc/mysql/my.cnf
+    
+    # Start MySQL service
+    sudo service mysql restart
+    
+  checkRunning.command: sudo service mysql status
+  stop.command: sudo service mysql stop
+  
+  brooklyn.config:
+    artifactory.mysql.createdb.script.template.download.url: https://raw.githubusercontent.com/cloudsoft/ibm-artifactory-ha/master/conf/artifactory-mysql-createdb-template.sql?token=ALEAW6PPZCegZdUJ9xfIBZtgN48a5zMtks5VedYzwA%3D%3D
+    artifactory.db.server.username: artifactory
+    artifactory.db.server.password: passw0rd
+    artifactory.subnet: 108.168.144
+        
+    shell.env: 
+        ARTIFACTORY_MYSQL_CREATEDB_SCRIPT_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.mysql.createdb.script.template.download.url")
+        ARTIFACTORY_DB_SERVER_USERNAME: $brooklyn:config("artifactory.db.server.username") 
+        ARTIFACTORY_DB_SERVER_PASSWORD: $brooklyn:config("artifactory.db.server.password")
+        ARTIFACTORY_SUBNET: $brooklyn:config("artifactory.subnet)

@@ -1,0 +1,69 @@
+brooklyn.catalog:
+  id: ArtifactoryHaNode
+  version: 1.0
+  description: Artifactory HA Node
+
+services:
+- type: brooklyn.entity.basic.VanillaSoftwareProcess
+  name: Artifactory HA Node
+  launch.command: |
+  
+    # Install prerequisite tools
+    sudo apt-get update
+    sudo apt-get -y install wget unzip openjdk-7-jre nfs-common mysql-client
+    
+    # Download and unzip Artifactory package to $ARTIFACTORY_HOME
+    sudo wget --output-document=artifactory.zip $ARTIFACTORY_DOWNLOAD_URL
+    sudo unzip artifactory.zip
+    sudo rm artifactory.zip
+    sudo mv artifactory-* $ARTIFACTORY_HOME
+    
+    # Create artifactory.lic with license key in $ARTIFACTORY_HOME/etc 
+    sudo touch ${ARTIFACTORY_HOME}/etc/artifactory.lic
+    echo $ARTIFACTORY_LICENSE_KEY | sudo tee --append ${ARTIFACTORY_HOME}/etc/artifactory.lic > /dev/null
+    
+    # Replace $ARTIFACTORY_HOME/etc/artifactory.system.properties with $ARTIFACTORY_HOME/misc/ha-node.properties file
+    sudo mv ${ARTIFACTORY_HOME}/etc/artifactory.system.properties ${ARTIFACTORY_HOME}/etc/artifactory.system.properties.bak
+    sudo cp ${ARTIFACTORY_HOME}/misc/ha/ha-node.properties.template ${ARTIFACTORY_HOME}/etc/ha-node.properties
+    
+    # Configure ha-node.properties
+    node_ip=`ifconfig $ARTIFACTORY_NODE_NIC_NAME | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'`
+    sudo sed -i "s/10.0.0.121/${node_ip}/g" ${ARTIFACTORY_HOME}/etc/ha-node.properties
+    sudo sed -i "s/primary=true/primary=${ARTIFACTORY_PRIMARY_NODE}/g" ${ARTIFACTORY_HOME}/etc/ha-node.properties
+    sudo chmod 644 ${ARTIFACTORY_HOME}/etc/ha-node.properties
+    
+    # Download JDBS driver
+    sudo wget --output-document=mysql-connector-java.tar.gz $MYSQL_CONNECTOR_DOWNLOAD_URL
+    sudo tar -zxf mysql-connector-java.tar.gz
+    sudo rm mysql-connector-java.tar.gz
+    sudo mv mysql-connector-java-* mysql-connector-java
+    sudo cp mysql-connector-java/mysql-connector-java-*.jar ${ARTIFACTORY_HOME}/tomcat/lib
+    
+    # Mount NFS Drive
+    sudo mkdir -p /mnt/shared/artifactory/clusterhome
+    sudo mount ${ARTIFACTORY_NFS_IP}:/clusterhome /mnt/shared/artifactory/clusterhome
+    
+    # Start Artifactory
+    sudo ${ARTIFACTORY_HOME}/bin/./artifactory.sh
+        
+  checkRunning.command: sudo ${ARTIFACTORY_HOME}/bin/artifactoryctl check
+  stop.command: sudo ${ARTIFACTORY_HOME}/bin/artifactoryctl stop
+  
+  brooklyn.config:
+    artifactory.home: ~/artifactory
+    artifactory.download.url: https://store.artifactoryonline.com/addons/download?license=cfd60b8f7187406f151e9b13dd68faed7beee8a1
+    artifactory.license.key: "jb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTA6mXxVRlQujnlw FceDdHYGcK/2hKBA/9L1b72SYcSYSUZgBlW8Wg4Imr1cfmMQ8v/XlreOLa3GIqIuAeq5ncuF6T2+ uwUKt3AY+MEotL5jGbB5M6Mjvo692gkeyM5ngwFwQbsjuX70qClyIVql8qkzRgEwin5Dm8F1eo5t rtDdF7O2IAEsiQXsyuxL4M5UK5WDCXEkrwpWHQTWVt6qW5wdpYwgQjaQmlLbkjPVjRToJLp+bbNx 56dRd2l2AswhsM1YHbzK/Uuf0K+33iAj9/dGO0F72VHoyA7XpUmlwkgZUBFrz2JnSn8ZRp4Isqe4 riZ8TFqOFXJ5bss3PZgIM95+QurIJZrfPkyAm0bHnkv0GsTBv0Md14h5cGfS9tiabBV5aQYGN4+I NQ9cwa5RpGPnGRnEyeyBcDbuf4ge5/S4pwAbVisBzNR3T76rFTWs+5y5VJu00Co22oxtlUF2JyrU 8qOQfU/ddD666gabIbJ/YKlyLRFmFdixpp4FtWfMhO3ny4MJILL8TLDAAkrmRa25zHiddgMnlbKm gemIJExX2EILOFlzspiCI+Lm/ewlMhggJFeruVT7LV5TZ/M0xR6AeshFA7BefFgbrP53x/JfpRdA wLmjbuyr+XZwmlcHG8WtgCca2E7U6US46CHjoHtHN+cG+Id9GW3TyaORjlQh1Q=="
+    artifactory.primary.node: true
+    artifactory.node.nic.name: eth1
+    artifactory.nfs.ip: 108.168.144.210
+    mysql.connector.download.url: http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz
+        
+    shell.env: 
+      ARTIFACTORY_HOME: $brooklyn:config("artifactory.home")
+      ARTIFACTORY_DOWNLOAD_URL: $brooklyn:config("artifactory.download.url")
+      ARTIFACTORY_LICENSE_KEY: $brooklyn:config("artifactory.license.key")
+      ARTIFACTORY_PRIMARY_NODE: $brooklyn:config("artifactory.primary.node")
+      ARTIFACTORY_NODE_NIC_NAME: $brooklyn:config("artifactory.node.nic.name")
+      ARTIFACTORY_NFS_IP: $brooklyn:config("artifactory.nfs.ip")
+      MYSQL_CONNECTOR_DOWNLOAD_URL: $brooklyn:config("mysql.connector.download.url")
+      
