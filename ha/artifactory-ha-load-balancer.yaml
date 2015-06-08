@@ -6,6 +6,7 @@ brooklyn.catalog:
 services:
 - type: brooklyn.entity.basic.VanillaSoftwareProcess
   name: Artifactory HA nginx Load Balancer
+  
   launch.command: |
     
     # Install nginx
@@ -43,3 +44,6 @@ services:
         ARTIFACTORY_NGINX_CONFIG_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.nginx.config.template.download.url")    
         ARTIFACTORY_SERVER_NAME: $brooklyn:config("artifactory.server.name")
         ARTIFACTORY_NODES_IPS: $brooklyn:config("artifactory.nodes.ips")
+        
+    provisioning.properties:
+      osFamily: ubuntu

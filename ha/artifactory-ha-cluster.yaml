@@ -6,6 +6,7 @@ brooklyn.catalog:
 services:
 - type: brooklyn.entity.basic.VanillaSoftwareProcess
   name: Artifactory HA Cluster
+  
   launch.command: |
   
     # Install prerequisite tools
@@ -62,3 +63,6 @@ services:
       ARTIFACTORY_DB_SERVER_USERNAME: $brooklyn:config("artifactory.db.server.username") 
       ARTIFACTORY_DB_SERVER_PASSWORD: $brooklyn:config("artifactory.db.server.password")
       ARTIFACTORY_NODES_IPS: $brooklyn:config("artifactory.nodes.ips")
+      
+    provisioning.properties:
+      osFamily: ubuntu

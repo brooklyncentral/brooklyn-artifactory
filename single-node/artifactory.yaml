@@ -6,6 +6,7 @@ brooklyn.catalog:
 services:
 - type: brooklyn.entity.basic.VanillaSoftwareProcess
   name: Artifactory Server
+  
   launch.command: |
     
     # Install prerequisite tools
@@ -34,3 +35,6 @@ services:
     
     shell.env: 
       ARTIFACTORY_HTTP_PORT: $brooklyn:config("artifactory.http.port")
+
+    provisioning.properties:
+      osFamily: ubuntu

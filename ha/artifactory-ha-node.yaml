@@ -6,6 +6,7 @@ brooklyn.catalog:
 services:
 - type: brooklyn.entity.basic.VanillaSoftwareProcess
   name: Artifactory HA Node
+  
   launch.command: |
   
     # Install prerequisite tools
@@ -67,3 +68,5 @@ services:
       ARTIFACTORY_NFS_IP: $brooklyn:config("artifactory.nfs.ip")
       MYSQL_CONNECTOR_DOWNLOAD_URL: $brooklyn:config("mysql.connector.download.url")
       
+    provisioning.properties:
+      osFamily: ubuntu
