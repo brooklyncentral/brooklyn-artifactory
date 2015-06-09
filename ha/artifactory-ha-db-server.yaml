@@ -9,9 +9,9 @@ services:
   
   launch.command: |
       
-    #Install MySQL
-    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password $ARTIFACTORY_DB_SERVER_PASSWORD’
-    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $ARTIFACTORY_DB_SERVER_PASSWORD'
+    # Install MySQL
+    echo mysql-server mysql-server/root_password password $ARTIFACTORY_DB_SERVER_PASSWORD | sudo debconf-set-selections
+    echo mysql-server mysql-server/root_password_again password $ARTIFACTORY_DB_SERVER_PASSWORD | sudo debconf-set-selections
     sudo apt-get -y install mysql-server
     
     # Download MySQL create db script template
@@ -27,6 +27,9 @@ services:
     # Replace subnet in template
     sudo sed -i "s/SUBNET_HERE/${ARTIFACTORY_SUBNET}/g" ~/createdb_mysql.sql
     
+    # Start MySQL service
+    sudo service mysql start
+    
     # Create db
     sudo mysql --user=root --password=${ARTIFACTORY_DB_SERVER_PASSWORD} < ~/createdb_mysql.sql
     
@@ -41,7 +44,7 @@ services:
     sudo sed -i "/\[mysqld\]/a tmp_table_size = 512M" /etc/mysql/my.cnf
     sudo sed -i "/\[mysqld\]/a innodb_file_per_table" /etc/mysql/my.cnf
     
-    # Start MySQL service
+    # Restart MySQL service
     sudo service mysql restart
     
   checkRunning.command: sudo service mysql status
@@ -54,10 +57,10 @@ services:
     artifactory.subnet: 108.168.144
         
     shell.env: 
-        ARTIFACTORY_MYSQL_CREATEDB_SCRIPT_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.mysql.createdb.script.template.download.url")
-        ARTIFACTORY_DB_SERVER_USERNAME: $brooklyn:config("artifactory.db.server.username") 
-        ARTIFACTORY_DB_SERVER_PASSWORD: $brooklyn:config("artifactory.db.server.password")
-        ARTIFACTORY_SUBNET: $brooklyn:config("artifactory.subnet)
+      ARTIFACTORY_MYSQL_CREATEDB_SCRIPT_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.mysql.createdb.script.template.download.url")
+      ARTIFACTORY_DB_SERVER_USERNAME: $brooklyn:config("artifactory.db.server.username") 
+      ARTIFACTORY_DB_SERVER_PASSWORD: $brooklyn:config("artifactory.db.server.password")
+      ARTIFACTORY_SUBNET: $brooklyn:config("artifactory.subnet")
 
     provisioning.properties:
       osFamily: ubuntu
