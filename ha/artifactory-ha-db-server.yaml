@@ -51,7 +51,7 @@ services:
   stop.command: sudo service mysql stop
   
   brooklyn.config:
-    artifactory.mysql.createdb.script.template.download.url: https://raw.githubusercontent.com/cloudsoft/ibm-artifactory-ha/master/conf/artifactory-mysql-createdb-template.sql?token=ALEAW6PPZCegZdUJ9xfIBZtgN48a5zMtks5VedYzwA%3D%3D
+    artifactory.mysql.createdb.script.template.download.url: https://raw.githubusercontent.com/brooklyncentral/brooklyn-artifactory/master/ha/conf/artifactory-mysql-createdb-template.sql
     artifactory.db.server.username: artifactory
     artifactory.db.server.password: passw0rd
     artifactory.subnet: 108.168.144
