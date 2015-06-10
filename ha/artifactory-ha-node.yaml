@@ -45,11 +45,10 @@ services:
     sudo mount ${ARTIFACTORY_NFS_IP}:/clusterhome /mnt/shared/artifactory/clusterhome
     
     # Start Artifactory
-    # TODO Run as service rather than execute script
-    sudo ${ARTIFACTORY_HOME}/bin/./artifactory.sh
+    sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl start
         
-  checkRunning.command: sudo ${ARTIFACTORY_HOME}/bin/artifactoryctl check
-  stop.command: sudo ${ARTIFACTORY_HOME}/bin/artifactoryctl stop
+  checkRunning.command: sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl check
+  stop.command: sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl stop
   
   brooklyn.config:
     artifactory.home: /opt/artifactory
