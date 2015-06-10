@@ -8,7 +8,6 @@ services:
   name: Artifactory HA Cluster
   
   launch.command: |
-  
     # Install prerequisite tools
     sudo apt-get update
     sudo apt-get -y install wget unzip nfs-kernel-server

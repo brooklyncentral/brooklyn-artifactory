@@ -8,7 +8,6 @@ services:
   name: Artifactory HA Node
   
   launch.command: |
-  
     # Install prerequisite tools
     sudo apt-get update
     sudo apt-get -y install wget unzip openjdk-7-jre nfs-common mysql-client
@@ -17,7 +16,8 @@ services:
     sudo wget --output-document=artifactory.zip $ARTIFACTORY_DOWNLOAD_URL
     sudo unzip artifactory.zip
     sudo rm artifactory.zip
-    sudo mv artifactory-* $ARTIFACTORY_HOME
+    # TODO Avoid specific reference to 3.8.0
+    sudo mv artifactory-powerpack-3.8.0 $ARTIFACTORY_HOME
     
     # Create artifactory.lic with license key in $ARTIFACTORY_HOME/etc 
     sudo touch ${ARTIFACTORY_HOME}/etc/artifactory.lic
@@ -45,13 +45,14 @@ services:
     sudo mount ${ARTIFACTORY_NFS_IP}:/clusterhome /mnt/shared/artifactory/clusterhome
     
     # Start Artifactory
+    # TODO Run as service rather than execute script
     sudo ${ARTIFACTORY_HOME}/bin/./artifactory.sh
         
   checkRunning.command: sudo ${ARTIFACTORY_HOME}/bin/artifactoryctl check
   stop.command: sudo ${ARTIFACTORY_HOME}/bin/artifactoryctl stop
   
   brooklyn.config:
-    artifactory.home: ~/artifactory
+    artifactory.home: /opt/artifactory
     artifactory.download.url: https://store.artifactoryonline.com/addons/download?license=cfd60b8f7187406f151e9b13dd68faed7beee8a1
     artifactory.license.key: "jb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTA6mXxVRlQujnlw FceDdHYGcK/2hKBA/9L1b72SYcSYSUZgBlW8Wg4Imr1cfmMQ8v/XlreOLa3GIqIuAeq5ncuF6T2+ uwUKt3AY+MEotL5jGbB5M6Mjvo692gkeyM5ngwFwQbsjuX70qClyIVql8qkzRgEwin5Dm8F1eo5t rtDdF7O2IAEsiQXsyuxL4M5UK5WDCXEkrwpWHQTWVt6qW5wdpYwgQjaQmlLbkjPVjRToJLp+bbNx 56dRd2l2AswhsM1YHbzK/Uuf0K+33iAj9/dGO0F72VHoyA7XpUmlwkgZUBFrz2JnSn8ZRp4Isqe4 riZ8TFqOFXJ5bss3PZgIM95+QurIJZrfPkyAm0bHnkv0GsTBv0Md14h5cGfS9tiabBV5aQYGN4+I NQ9cwa5RpGPnGRnEyeyBcDbuf4ge5/S4pwAbVisBzNR3T76rFTWs+5y5VJu00Co22oxtlUF2JyrU 8qOQfU/ddD666gabIbJ/YKlyLRFmFdixpp4FtWfMhO3ny4MJILL8TLDAAkrmRa25zHiddgMnlbKm gemIJExX2EILOFlzspiCI+Lm/ewlMhggJFeruVT7LV5TZ/M0xR6AeshFA7BefFgbrP53x/JfpRdA wLmjbuyr+XZwmlcHG8WtgCca2E7U6US46CHjoHtHN+cG+Id9GW3TyaORjlQh1Q=="
     artifactory.primary.node: true
