@@ -1,11 +1,11 @@
 brooklyn.catalog:
-  id: ArtifactoryHaCluster
+  id: ArtifactoryHaNfsServer
   version: 1.0
-  description: Artifactory HA Cluster
+  description: Artifactory HA NFS Server
 
 services:
 - type: brooklyn.entity.basic.VanillaSoftwareProcess
-  name: Artifactory HA Cluster
+  name: Artifactory HA NFS Server
   
   launch.command: |
     # Install prerequisite tools
