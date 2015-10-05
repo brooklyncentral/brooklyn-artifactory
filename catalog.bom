@@ -1,0 +1,311 @@
+# Copyright 2015 by Cloudsoft Corporation Limited
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+brooklyn.catalog:
+  version: 1.0  
+  items:
+  - id: artifactory-node
+    name: Artifactory Node
+    item:
+      type: org.apache.brooklyn.entity.software.base.VanillaSoftwareProcess
+      
+      provisioning.properties:
+        osFamily: ubuntu
+        
+      brooklyn.config:
+        artifactory.home: /opt/artifactory
+        artifactory.download.url: https://dl.bintray.com/jfrog/artifactory-pro/org/artifactory/pro/jfrog-artifactory-pro/4.1.3/jfrog-artifactory-pro-4.1.3.zip?expiry=1454708549699&id=K8v%2BJBItDfdcU9%2BBa2lxhllB5d2F3nAQdMvZZ4%2BLy59jyqpZnQYHCohdIHHb7XIEZ7x1mKQUiKZ7q0PaxF9QbM%2FVQnG6bJIc3ZD7m1ilNqyOheeByOoFqZQtyJioAFFEwP4F8gUyDwzwSaZRi%2FWc9LGPe17iE%2B%2FPe6GrcfsRxowTUdX%2ByFFMZo4%2BFl0moWCJ1e%2B7k7VX0I1MOKEa8P%2Bvw1LRU%2FFweoZbeT0nxbrxIxGEbGNUXsCdJaLiGsaU%2Bw7E&signature=mTh9yd26JHTvPn4SU0mUfE0OEyp7WVprq8OYb%2FyxtSlKlJgUNaAaLsWXioACMPm0XrRYsiy%2BEVM41QU%2FuJ2eXg%3D%3D
+        artifactory.license.key: jb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBzmfHoDfs2dR4jGL/BkeRsabMrLlZLEWB7tU9lbu6Q+2awBj r7RPyEJwyCiS7iGArRiiri6n5VlXQX4ppNu37iZ6PROJdhY/XREIc3sINWrey1RwaW3Ngolk8jZk X3H/LKy4Foa/gqM8j2s0WzIgrkr6XCmNbftrtnDhDrGqLHc2MYCmOxVNhCw6/vB8fGODWeWxI1/A qUw7iQYQWsFyrmTJvdjU5ExT6ooWUsuGNixZK1Miy25EPym1ZqBVrNzSs/i21VKlju1LBVby9qB7 eyDa6hmwHq9rYINBH+614qZLGf5BdNdC0fZyONlgfvkNXVlTeUmcW6LX/+IulaHmFY0i7gOtaxrY PDHasRC609fi3axj4znY1mEvLqCznIy9MwSLxM0AO6dWRshyOogeETuP3+IdvhXwCSyImNZVplaH e4iVH3vJT+rPVc+FLyne1U0WVRgsphdDFUQcHw3JLavqVs0QX4ZpJqiuBLvsDK5eIhf/FfpwYpfj ShOGLPJiS0QpwgHuhbZqNHT2wj2zxx9wPwKeW593uLr1clcRo5PrpbvQVRcQFLJjfnwCYyG3lUo9 8Af01Jbq3+XPtouQqzWfUju1n8Fx3Bl8WOU0kHvjjb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBzmfHoDfs2dR4jGL/BkeRsabMrLlZLEWB7tU9lbu6Q+2awBj r7RPyEJwyCiS7iGArRiiri6n5VlXQX4ppNu37iZ6PROJdhY/XREIc3sINWrey1RwaW3Ngolk8jZk X3H/LKy4Foa/gqM8j2s0WzIgrkr6XCmNbftrtnDhDrGqLHc2MYCmOxVNhCw6/vB8fGODWeWxI1/A qUw7iQYQWsFyrmTJvdjU5ExT6ooWUsuGNixZK1Miy25EPym1ZqBVrNzSs/i21VKlju1LBVby9qB7 eyDa6hmwHq9rYINBH+614qZLGf5BdNdC0fZyONlgfvkNXVlTeUmcW6LX/+IulaHmFY0i7gOtaxrY PDHasRC609fi3axj4znY1mEvLqCznIy9MwSLxM0AO6dWRshyOogeETuP3+IdvhXwCSyImNZVplaH e4iVH3vJT+rPVc+FLyne1U0WVRgsphdDFUQcHw3JLavqVs0QX4ZpJqiuBLvsDK5eIhf/FfpwYpfj ShOGLPJiS0QpwgHuhbZqNHT2wj2zxx9wPwKeW593uLr1clcRo5PrpbvQVRcQFLJjfnwCYyG3lUo9 8Af01Jbq3+XPtouQqzWfUju1n8Fx3Bl8WOU0kHvj
+        artifactory.primary.node: ""
+        
+        mysql.connector.download.url: http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz
+      
+      shell.env: 
+        ARTIFACTORY_HOME: $brooklyn:config("artifactory.home")
+        ARTIFACTORY_DOWNLOAD_URL: $brooklyn:config("artifactory.download.url")
+        ARTIFACTORY_LICENSE_KEY: $brooklyn:config("artifactory.license.key")
+        ARTIFACTORY_PRIMARY_NODE: $brooklyn:config("artifactory.primary.node")
+        
+        MYSQL_CONNECTOR_DOWNLOAD_URL: $brooklyn:config("mysql.connector.download.url")
+        
+        LOCAL_HOST_ADDRESS: $brooklyn:attributeWhenReady("host.address")
+        NFS_HOST: $brooklyn:component("nfs").attributeWhenReady("host.address")
+      
+      install.command: |
+        # Install prerequisite tools
+        sudo apt-get -y update
+        sudo apt-get -y install software-properties-common python-software-properties
+        sudo add-apt-repository -y ppa:webupd8team/java
+        sudo apt-get -y update
+        echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+        sudo apt-get -y install wget unzip oracle-java8-installer nfs-common mysql-client
+  
+        # Download and unzip Artifactory package to $ARTIFACTORY_HOME
+        sudo wget --output-document=artifactory.zip $ARTIFACTORY_DOWNLOAD_URL
+        sudo unzip artifactory.zip
+        sudo rm artifactory.zip
+        sudo mv artifactory-pro-4.1.3 $ARTIFACTORY_HOME
+  
+        # Create artifactory.lic with license key in $ARTIFACTORY_HOME/etc 
+        sudo touch ${ARTIFACTORY_HOME}/etc/artifactory.lic
+        echo $ARTIFACTORY_LICENSE_KEY | sudo tee --append ${ARTIFACTORY_HOME}/etc/artifactory.lic > /dev/null
+  
+        # Replace $ARTIFACTORY_HOME/etc/artifactory.system.properties with $ARTIFACTORY_HOME/misc/ha-node.properties file
+        sudo mv ${ARTIFACTORY_HOME}/etc/artifactory.system.properties ${ARTIFACTORY_HOME}/etc/artifactory.system.properties.bak
+        sudo cp ${ARTIFACTORY_HOME}/misc/ha/ha-node.properties.template ${ARTIFACTORY_HOME}/etc/ha-node.properties
+  
+        # Configure ha-node.properties
+        sudo sed -i "s/node.id=art1/node.id=${LOCAL_HOST_ADDRESS}/g" ${ARTIFACTORY_HOME}/etc/ha-node.properties
+        sudo sed -i "s/10.0.0.121/${LOCAL_HOST_ADDRESS}/g" ${ARTIFACTORY_HOME}/etc/ha-node.properties
+        sudo sed -i "s/primary=true/primary=${ARTIFACTORY_PRIMARY_NODE}/g" ${ARTIFACTORY_HOME}/etc/ha-node.properties
+        sudo chmod 644 ${ARTIFACTORY_HOME}/etc/ha-node.properties
+  
+        # Download JDBS driver
+        sudo wget --output-document=mysql-connector-java.tar.gz $MYSQL_CONNECTOR_DOWNLOAD_URL
+        sudo tar -zxf mysql-connector-java.tar.gz
+        sudo rm mysql-connector-java.tar.gz
+        sudo mv mysql-connector-java-* mysql-connector-java
+        sudo cp mysql-connector-java/mysql-connector-java-*.jar ${ARTIFACTORY_HOME}/tomcat/lib
+  
+        # Mount NFS Drive
+        sudo mkdir -p /mnt/shared/artifactory/clusterhome
+        sudo mount ${NFS_HOST}:/clusterhome /mnt/shared/artifactory/clusterhome lookupcache=none 
+      
+      launch.command: sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl start
+      
+      checkRunning.command: sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl check
+
+      stop.command: sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl stop
+      
+  - id: artifactory-node-cluster
+    name: Artifactory Node Cluster
+    item:
+      type: org.apache.brooklyn.entity.group.DynamicCluster
+
+      firstMemberSpec:
+        $brooklyn:entitySpec:
+          type: artifactory-node
+          name: Artifactory Primary Node
+          brooklyn.config:
+            artifactory.primary.node: "true"
+
+      memberSpec:
+        $brooklyn:entitySpec:
+          type: artifactory-node
+          name: Artifactory Secondary Node
+          brooklyn.config:
+            artifactory.primary.node: "false"
+            
+      brooklyn.enrichers:
+      - type: org.apache.brooklyn.enricher.stock.Aggregator
+        brooklyn.config:
+          uniqueTag: host-aggregator
+          enricher.aggregator.excludeBlank: true
+          enricher.aggregating.fromMembers: true
+          enricher.sourceSensor: $brooklyn:sensor("host.address")
+          enricher.targetSensor: $brooklyn:sensor("host.address.list")
+
+      - type: org.apache.brooklyn.enricher.stock.Joiner
+        brooklyn.config:
+          uniqueTag: host-joiner
+          enricher.sourceSensor: $brooklyn:sensor("host.address.list")
+          enricher.targetSensor: $brooklyn:sensor("host.address.semicolon_separated")
+          separator: ";"
+          quote: false
+          minimum: $brooklyn:config("cluster.initial.size")
+
+      - type: org.apache.brooklyn.enricher.stock.Joiner
+        brooklyn.config:
+          uniqueTag: host-main
+          enricher.sourceSensor: $brooklyn:sensor("host.address.list")
+          enricher.targetSensor: $brooklyn:sensor("org.apache.brooklyn.core.entity.Attributes", "host.address")
+          quote: false
+          maximum: 1
+
+  - id: artifactory-nfs-server
+    name: NFS Server
+    item:
+      type: org.apache.brooklyn.entity.software.base.VanillaSoftwareProcess
+      
+      provisioning.properties:
+        osFamily: ubuntu
+      
+      brooklyn.config:
+        artifactory.download.url: http://bit.ly/Hqv9aj
+        artifactory.cluster.home: /clusterhome
+        artifactory.security.token: 76b07383dcda344979681e01efa5ac50
+ 
+        artifactory.db.server.username: artifactory
+        artifactory.db.server.password: passw0rd
+        
+      shell.env: 
+        ARTIFACTORY_DOWNLOAD_URL: $brooklyn:config("artifactory.download.url")
+        ARTIFACTORY_CLUSTER_HOME: $brooklyn:config("artifactory.cluster.home")
+        ARTIFACTORY_SECURITY_TOKEN: $brooklyn:config("artifactory.security.token")
+    
+        ARTIFACTORY_DB_SERVER_IP: $brooklyn:component("db").attributeWhenReady("host.address") 
+        ARTIFACTORY_DB_SERVER_USERNAME: $brooklyn:config("artifactory.db.server.username") 
+        ARTIFACTORY_DB_SERVER_PASSWORD: $brooklyn:config("artifactory.db.server.password") 
+      
+      install.command: |
+        # Install prerequisite tools
+        sudo apt-get -y update
+        sudo apt-get -y install wget unzip nfs-kernel-server
+  
+        # Download and unzip Artifactory package
+        sudo wget --output-document=artifactory.zip $ARTIFACTORY_DOWNLOAD_URL
+        sudo unzip artifactory.zip
+        sudo rm artifactory.zip
+        sudo mv artifactory-* artifactory
+  
+        # Create cluster home folder
+        sudo mkdir -p ${ARTIFACTORY_CLUSTER_HOME}/ha-etc
+  
+        # Create cluster.properties file and add security token
+        echo security.token=$ARTIFACTORY_SECURITY_TOKEN | sudo tee --append ${ARTIFACTORY_CLUSTER_HOME}/ha-etc/cluster.properties > /dev/null
+  
+        # Copy in necessary Artifactory files
+        sudo cp artifactory/etc/{artifactory.system.properties,mimetypes.xml} ${ARTIFACTORY_CLUSTER_HOME}/ha-etc
+        sudo cp artifactory/misc/db/mysql.properties ${ARTIFACTORY_CLUSTER_HOME}/ha-etc/storage.properties
+  
+        # Configure MySQL storage.properties file
+        sudo sed -i "s/localhost/${ARTIFACTORY_DB_SERVER_IP}/g" ${ARTIFACTORY_CLUSTER_HOME}/ha-etc/storage.properties
+        sudo sed -i "s/username=artifactory/username=${ARTIFACTORY_DB_SERVER_USERNAME}/g" ${ARTIFACTORY_CLUSTER_HOME}/ha-etc/storage.properties
+        sudo sed -i "s/password=password/password=${ARTIFACTORY_DB_SERVER_PASSWORD}/g" ${ARTIFACTORY_CLUSTER_HOME}/ha-etc/storage.properties
+  
+        # Edit NFS exports file
+        echo "$ARTIFACTORY_CLUSTER_HOME *(rw,sync,no_root_squash)" | sudo tee --append /etc/exports > /dev/null
+  
+      launch.command: sudo service nfs-kernel-server restart
+    
+      checkRunning.command: sudo service nfs-kernel-server status
+    
+      stop.command: sudo service nfs-kernel-server stop
+      
+  - id: artifactory-db-server
+    name: Artifactory MySQL Server
+    item:
+      type: org.apache.brooklyn.entity.software.base.VanillaSoftwareProcess
+
+      provisioning.properties:
+        osFamily: ubuntu
+      
+      brooklyn.config:
+        artifactory.mysql.createdb.script.template.download.url: https://gist.githubusercontent.com/mikezaccardo/982fc76163f97af368f8/raw/3a1663b26d99918a1c7778ee251d9bd5929f44d6/artifactory-mysql-createdb-template.sql
+        
+        artifactory.db.server.username: artifactory
+        artifactory.db.server.password: passw0rd
+        
+      shell.env: 
+        ARTIFACTORY_MYSQL_CREATEDB_SCRIPT_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.mysql.createdb.script.template.download.url")
+
+        ARTIFACTORY_DB_SERVER_USERNAME: $brooklyn:config("artifactory.db.server.username") 
+        ARTIFACTORY_DB_SERVER_PASSWORD: $brooklyn:config("artifactory.db.server.password")
+
+      install.command: |
+        # Install MySQL
+        echo mysql-server mysql-server/root_password password $ARTIFACTORY_DB_SERVER_PASSWORD | sudo debconf-set-selections
+        echo mysql-server mysql-server/root_password_again password $ARTIFACTORY_DB_SERVER_PASSWORD | sudo debconf-set-selections
+        sudo apt-get -y update
+        sudo apt-get -y install mysql-server
+    
+        # Download MySQL create db script template
+        sudo wget --output-document=createdb_mysql.sql $ARTIFACTORY_MYSQL_CREATEDB_SCRIPT_TEMPLATE_DOWNLOAD_URL
+    
+        # Replace username in template
+        sudo sed -i "s/USER_HERE/${ARTIFACTORY_DB_SERVER_USERNAME}/g" createdb_mysql.sql
+    
+        # Replace password in template
+        sudo sed -i "s/PASSWORD_HERE/${ARTIFACTORY_DB_SERVER_PASSWORD}/g" createdb_mysql.sql
+    
+        # Stop existing mysql service and delete logs (their presence can cause startup failures)
+        sudo service mysql stop
+        sudo rm /var/lib/mysql/ib_logfile0
+        sudo rm /var/lib/mysql/ib_logfile1
+    
+        # Start mysql service
+        sudo service mysql start
+    
+        # Create db
+        sudo mysql --user=root --password=${ARTIFACTORY_DB_SERVER_PASSWORD} < createdb_mysql.sql
+    
+        # Edit my.cnf file to allow remote connections
+        sudo sed -i -e "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/g" /etc/mysql/my.cnf
+    
+        # Edit my.cnf file with necessary additional Artifactory values
+        sudo sed -i -e "s/max_allowed_packet\s*=.*M/max_allowed_packet = 8M/g" /etc/mysql/my.cnf
+        sudo sed -i "/\[mysqld\]/a innodb_log_buffer_size = 4M" /etc/mysql/my.cnf
+        sudo sed -i "/\[mysqld\]/a innodb_log_file_size = 256M" /etc/mysql/my.cnf
+        sudo sed -i "/\[mysqld\]/a max_heap_table_size = 512M" /etc/mysql/my.cnf
+        sudo sed -i "/\[mysqld\]/a tmp_table_size = 512M" /etc/mysql/my.cnf
+        sudo sed -i "/\[mysqld\]/a innodb_file_per_table" /etc/mysql/my.cnf
+    
+        # Stop existing mysql service and delete logs (their presence can cause startup failures)
+        sudo service mysql stop
+        sudo rm /var/lib/mysql/ib_logfile0
+        sudo rm /var/lib/mysql/ib_logfile1
+    
+      launch.command: sudo service mysql restart
+      
+      checkRunning.command: sudo service mysql status
+      
+      stop.command: sudo service mysql stop
+
+  - id: artifactory-load-balancer
+    name: Artifactory nginx Load Balancer
+    item:
+      type: org.apache.brooklyn.entity.software.base.VanillaSoftwareProcess
+      
+      brooklyn.config:
+        artifactory.nginx.config.template.download.url: https://gist.githubusercontent.com/mikezaccardo/2aa6d5ce239a6f4ced02/raw/550b883c3bb9754682e98129f0c6ff5445e9d805/artifactory-nginx-template.conf
+        artifactory.server.name: My Artifactory Server
+        
+      shell.env: 
+          ARTIFACTORY_NGINX_CONFIG_TEMPLATE_DOWNLOAD_URL: $brooklyn:config("artifactory.nginx.config.template.download.url")    
+          ARTIFACTORY_SERVER_NAME: $brooklyn:config("artifactory.server.name")
+          ARTIFACTORY_NODES_HOSTS: $brooklyn:component("ha-cluster").attributeWhenReady("host.address.semicolon_separated")
+        
+      provisioning.properties:
+        osFamily: ubuntu
+      
+      install.command: |
+        # Install nginx
+        sudo apt-get -y update
+        sudo apt-get -y install nginx
+    
+        # Download nginx config file template
+        sudo wget --output-document=artifactory-nginx.conf $ARTIFACTORY_NGINX_CONFIG_TEMPLATE_DOWNLOAD_URL
+        sudo mv artifactory-nginx.conf /etc/nginx/artifactory-nginx.conf
+    
+        # Replace server name in template
+        sudo sed -i "s/SERVER_NAME_HERE/${ARTIFACTORY_SERVER_NAME}/g" /etc/nginx/artifactory-nginx.conf
+    
+        # Replace node IPs in template
+        server_ip_text=""
+    
+        IFS=';' read -ra IPS <<< "$ARTIFACTORY_NODES_HOSTS"
+        for i in "${IPS[@]}"; do
+            server_ip_text+="server ${i}:8081;"
+        done
+    
+        sudo sed -i "s/server SERVER_IP_HERE:8081;/${server_ip_text}/g" /etc/nginx/artifactory-nginx.conf
+    
+        # Stop existing nginx service
+        sudo service nginx stop
+    
+      launch.command: sudo nginx -c /etc/nginx/artifactory-nginx.conf
+    
+      checkRunning.command: sudo service nginx status
+    
+      stop.command: sudo service nginx stop
