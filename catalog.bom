@@ -83,7 +83,7 @@ brooklyn.catalog:
       launch.command: |
         # Mount NFS Drive
         sudo mkdir -p /mnt/shared/artifactory/clusterhome
-        sudo mount ${NFS_HOST}:/clusterhome /mnt/shared/artifactory/clusterhome lookupcache=none 
+        sudo mount -o lookupcache=none ${NFS_HOST}:/clusterhome /mnt/shared/artifactory/clusterhome
 
         sudo ${ARTIFACTORY_HOME}/bin/./artifactoryctl start
 
