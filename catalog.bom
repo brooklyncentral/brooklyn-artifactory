@@ -13,7 +13,7 @@
 # limitations under the License.
 
 brooklyn.catalog:
-  version: 1.0  
+  version: 1.0
   items:
   - id: artifactory-node
     name: Artifactory Node
@@ -26,8 +26,10 @@ brooklyn.catalog:
       brooklyn.config:
         artifactory.home: /opt/artifactory
         artifactory.download.url: https://dl.bintray.com/jfrog/artifactory-pro/org/artifactory/pro/jfrog-artifactory-pro/4.1.3/jfrog-artifactory-pro-4.1.3.zip?expiry=1454708549699&id=K8v%2BJBItDfdcU9%2BBa2lxhllB5d2F3nAQdMvZZ4%2BLy59jyqpZnQYHCohdIHHb7XIEZ7x1mKQUiKZ7q0PaxF9QbM%2FVQnG6bJIc3ZD7m1ilNqyOheeByOoFqZQtyJioAFFEwP4F8gUyDwzwSaZRi%2FWc9LGPe17iE%2B%2FPe6GrcfsRxowTUdX%2ByFFMZo4%2BFl0moWCJ1e%2B7k7VX0I1MOKEa8P%2Bvw1LRU%2FFweoZbeT0nxbrxIxGEbGNUXsCdJaLiGsaU%2Bw7E&signature=mTh9yd26JHTvPn4SU0mUfE0OEyp7WVprq8OYb%2FyxtSlKlJgUNaAaLsWXioACMPm0XrRYsiy%2BEVM41QU%2FuJ2eXg%3D%3D
-        artifactory.license.key: jb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBzmfHoDfs2dR4jGL/BkeRsabMrLlZLEWB7tU9lbu6Q+2awBj r7RPyEJwyCiS7iGArRiiri6n5VlXQX4ppNu37iZ6PROJdhY/XREIc3sINWrey1RwaW3Ngolk8jZk X3H/LKy4Foa/gqM8j2s0WzIgrkr6XCmNbftrtnDhDrGqLHc2MYCmOxVNhCw6/vB8fGODWeWxI1/A qUw7iQYQWsFyrmTJvdjU5ExT6ooWUsuGNixZK1Miy25EPym1ZqBVrNzSs/i21VKlju1LBVby9qB7 eyDa6hmwHq9rYINBH+614qZLGf5BdNdC0fZyONlgfvkNXVlTeUmcW6LX/+IulaHmFY0i7gOtaxrY PDHasRC609fi3axj4znY1mEvLqCznIy9MwSLxM0AO6dWRshyOogeETuP3+IdvhXwCSyImNZVplaH e4iVH3vJT+rPVc+FLyne1U0WVRgsphdDFUQcHw3JLavqVs0QX4ZpJqiuBLvsDK5eIhf/FfpwYpfj ShOGLPJiS0QpwgHuhbZqNHT2wj2zxx9wPwKeW593uLr1clcRo5PrpbvQVRcQFLJjfnwCYyG3lUo9 8Af01Jbq3+XPtouQqzWfUju1n8Fx3Bl8WOU0kHvjjb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBzmfHoDfs2dR4jGL/BkeRsabMrLlZLEWB7tU9lbu6Q+2awBj r7RPyEJwyCiS7iGArRiiri6n5VlXQX4ppNu37iZ6PROJdhY/XREIc3sINWrey1RwaW3Ngolk8jZk X3H/LKy4Foa/gqM8j2s0WzIgrkr6XCmNbftrtnDhDrGqLHc2MYCmOxVNhCw6/vB8fGODWeWxI1/A qUw7iQYQWsFyrmTJvdjU5ExT6ooWUsuGNixZK1Miy25EPym1ZqBVrNzSs/i21VKlju1LBVby9qB7 eyDa6hmwHq9rYINBH+614qZLGf5BdNdC0fZyONlgfvkNXVlTeUmcW6LX/+IulaHmFY0i7gOtaxrY PDHasRC609fi3axj4znY1mEvLqCznIy9MwSLxM0AO6dWRshyOogeETuP3+IdvhXwCSyImNZVplaH e4iVH3vJT+rPVc+FLyne1U0WVRgsphdDFUQcHw3JLavqVs0QX4ZpJqiuBLvsDK5eIhf/FfpwYpfj ShOGLPJiS0QpwgHuhbZqNHT2wj2zxx9wPwKeW593uLr1clcRo5PrpbvQVRcQFLJjfnwCYyG3lUo9 8Af01Jbq3+XPtouQqzWfUju1n8Fx3Bl8WOU0kHvj
+        artifactory.license.keys: jb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBzmfHoDfs2dR4jGL/BkeRsabMrLlZLEWB7tU9lbu6Q+2awBj r7RPyEJwyCiS7iGArRiiri6n5VlXQX4ppNu37iZ6PROJdhY/XREIc3sINWrey1RwaW3Ngolk8jZk X3H/LKy4Foa/gqM8j2s0WzIgrkr6XCmNbftrtnDhDrGqLHc2MYCmOxVNhCw6/vB8fGODWeWxI1/A qUw7iQYQWsFyrmTJvdjU5ExT6ooWUsuGNixZK1Miy25EPym1ZqBVrNzSs/i21VKlju1LBVby9qB7 eyDa6hmwHq9rYINBH+614qZLGf5BdNdC0fZyONlgfvkNXVlTeUmcW6LX/+IulaHmFY0i7gOtaxrY PDHasRC609fi3axj4znY1mEvLqCznIy9MwSLxM0AO6dWRshyOogeETuP3+IdvhXwCSyImNZVplaH e4iVH3vJT+rPVc+FLyne1U0WVRgsphdDFUQcHw3JLavqVs0QX4ZpJqiuBLvsDK5eIhf/FfpwYpfj ShOGLPJiS0QpwgHuhbZqNHT2wj2zxx9wPwKeW593uLr1clcRo5PrpbvQVRcQFLJjfnwCYyG3lUo9 8Af01Jbq3+XPtouQqzWfUju1n8Fx3Bl8WOU0kHvjjb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBzmfHoDfs2dR4jGL/BkeRsabMrLlZLEWB7tU9lbu6Q+2awBj r7RPyEJwyCiS7iGArRiiri6n5VlXQX4ppNu37iZ6PROJdhY/XREIc3sINWrey1RwaW3Ngolk8jZk X3H/LKy4Foa/gqM8j2s0WzIgrkr6XCmNbftrtnDhDrGqLHc2MYCmOxVNhCw6/vB8fGODWeWxI1/A qUw7iQYQWsFyrmTJvdjU5ExT6ooWUsuGNixZK1Miy25EPym1ZqBVrNzSs/i21VKlju1LBVby9qB7 eyDa6hmwHq9rYINBH+614qZLGf5BdNdC0fZyONlgfvkNXVlTeUmcW6LX/+IulaHmFY0i7gOtaxrY PDHasRC609fi3axj4znY1mEvLqCznIy9MwSLxM0AO6dWRshyOogeETuP3+IdvhXwCSyImNZVplaH e4iVH3vJT+rPVc+FLyne1U0WVRgsphdDFUQcHw3JLavqVs0QX4ZpJqiuBLvsDK5eIhf/FfpwYpfj ShOGLPJiS0QpwgHuhbZqNHT2wj2zxx9wPwKeW593uLr1clcRo5PrpbvQVRcQFLJjfnwCYyG3lUo9 8Af01Jbq3+XPtouQqzWfUju1n8Fx3Bl8WOU0kHvj;jb12tcBe1seX6ygwcozB4dBgY0LDP0IWUrKFAkV5ZeJFbZfKFUJO1CHhyFgx3LqX/adeE0ane58S vIL0o+5ObDV1uXCoQneXeh5591Im0N0admyNO+C8r3z+i1n/CeGO4NC38gwMkTDJqFPzaDlpi43h aZGpZuEMrti7Xq+VIsl1of1AoBGpBx97w/TiAwWkuCGOSo0/NpPPcGQyUWhMaZNyWDa9sGvRFMdU Div0+E42/e5Zo99/5E8hwTZMYSZCCtKi9VSYquOX3+QLYhgHkOJD92LMaRdYjgbVdQC9PMVproJ2 eRBnR7JFTROvdXx65H0jA9r6L4NrVoTH652eX6If9cQNJU+xupkOE5vYxmjza5Ts7FkNiww6ifqq tlvNnznXTMvcNF7+ajN+iBsV/lfydUBsUb0E7cq4nCKjJfEMAAt52ArTvimGWhHKKvJW97vrUoDy 6FYwdXHh19DhMyH1DxTdDe5ZtMwqaGFcnPQzQNP8bVHKBFur8qKf+sf1PPbEzgs77K26JRoBoGdB HYWiVk5GQv871hmImF2sEzPQ5FWLg3YvxnXStN6JKASA96iseyJKiqpe6CaCuKfbLLYiw/1Si8wN cpVeiZ7TkgYWhXSSo3IiS/4eATWZe0oe0v+DDgVWoGmewMz0862L3O4hFBcMUkhI31fJ19oviQ9k GCEXXv2Dhw5H/0vQj/kNW+pmg9vUfgg/K0AQcmyCet7UrXl10Lya3C70seo1wfn67zFXQofCO47q NiSG5fIssg6otvKlwJmx3MZWx+0SVvsph0HXIsIij2J1p86yTSQtlRrzO0wdRQ==
         artifactory.primary.node: ""
+
+        node.id: ""
 
         mysql.connector.download.url: http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz
 
@@ -36,8 +38,10 @@ brooklyn.catalog:
       shell.env: 
         ARTIFACTORY_HOME: $brooklyn:config("artifactory.home")
         ARTIFACTORY_DOWNLOAD_URL: $brooklyn:config("artifactory.download.url")
-        ARTIFACTORY_LICENSE_KEY: $brooklyn:config("artifactory.license.key")
+        ARTIFACTORY_LICENSE_KEYS: $brooklyn:config("artifactory.license.keys")
         ARTIFACTORY_PRIMARY_NODE: $brooklyn:config("artifactory.primary.node")
+
+        NODE_ID: $brooklyn:config("node.id")
 
         MYSQL_CONNECTOR_DOWNLOAD_URL: $brooklyn:config("mysql.connector.download.url")
         
@@ -59,9 +63,10 @@ brooklyn.catalog:
         sudo rm artifactory.zip
         sudo mv artifactory-pro-4.1.3 $ARTIFACTORY_HOME
 
-        # Create artifactory.lic with license key in $ARTIFACTORY_HOME/etc 
+        # Create artifactory.lic with license key in $ARTIFACTORY_HOME/etc
+        IFS=';' read -ra LICENSE_KEYS <<< "$ARTIFACTORY_LICENSE_KEYS"
         sudo touch ${ARTIFACTORY_HOME}/etc/artifactory.lic
-        echo $ARTIFACTORY_LICENSE_KEY | sudo tee --append ${ARTIFACTORY_HOME}/etc/artifactory.lic > /dev/null
+        echo ${LICENSE_KEYS[$NODE_ID]} | sudo tee --append ${ARTIFACTORY_HOME}/etc/artifactory.lic > /dev/null
 
         # Replace $ARTIFACTORY_HOME/etc/artifactory.system.properties with $ARTIFACTORY_HOME/misc/ha-node.properties file
         sudo mv ${ARTIFACTORY_HOME}/etc/artifactory.system.properties ${ARTIFACTORY_HOME}/etc/artifactory.system.properties.bak
@@ -106,6 +111,7 @@ brooklyn.catalog:
           name: Artifactory Primary Node
           brooklyn.config:
             artifactory.primary.node: "true"
+            node.id: 0
 
       memberSpec:
         $brooklyn:entitySpec:
@@ -113,7 +119,8 @@ brooklyn.catalog:
           name: Artifactory Secondary Node
           brooklyn.config:
             artifactory.primary.node: "false"
-    
+            node.id: $brooklyn:attributeWhenReady("cluster.member.id")
+
       brooklyn.enrichers:
       - type: org.apache.brooklyn.enricher.stock.Aggregator
         brooklyn.config:
