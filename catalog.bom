@@ -29,8 +29,6 @@ brooklyn.catalog:
         artifactory.license.keys: YOUR_LICENSES_HERE_SEMICOLON_SEPARATED
         artifactory.primary.node: ""
 
-        node.id: ""
-
         mysql.connector.download.url: http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz
 
         launch.latch: $brooklyn:component("nfs").attributeWhenReady("service.isUp")
@@ -41,7 +39,7 @@ brooklyn.catalog:
         ARTIFACTORY_LICENSE_KEYS: $brooklyn:config("artifactory.license.keys")
         ARTIFACTORY_PRIMARY_NODE: $brooklyn:config("artifactory.primary.node")
 
-        NODE_ID: $brooklyn:config("node.id")
+        NODE_ID: $brooklyn:config("cluster.member.id")
 
         MYSQL_CONNECTOR_DOWNLOAD_URL: $brooklyn:config("mysql.connector.download.url")
         
@@ -111,7 +109,6 @@ brooklyn.catalog:
           name: Artifactory Primary Node
           brooklyn.config:
             artifactory.primary.node: "true"
-            node.id: 0
 
       memberSpec:
         $brooklyn:entitySpec:
@@ -119,7 +116,6 @@ brooklyn.catalog:
           name: Artifactory Secondary Node
           brooklyn.config:
             artifactory.primary.node: "false"
-            node.id: $brooklyn:attributeWhenReady("cluster.member.id")
 
       brooklyn.enrichers:
       - type: org.apache.brooklyn.enricher.stock.Aggregator
