@@ -59,7 +59,7 @@ brooklyn.catalog:
         sudo wget --output-document=artifactory.zip $ARTIFACTORY_DOWNLOAD_URL
         sudo unzip artifactory.zip
         sudo rm artifactory.zip
-        sudo mv artifactory-pro-4.1.3 $ARTIFACTORY_HOME
+        sudo mv artifactory-pro-* $ARTIFACTORY_HOME
 
         # Create artifactory.lic with license key in $ARTIFACTORY_HOME/etc
         IFS=';' read -ra LICENSE_KEYS <<< "$ARTIFACTORY_LICENSE_KEYS"
